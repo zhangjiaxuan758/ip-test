@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Whois / RDAP 查询 - 小轩IP检测</title>
+<meta name="description" content="免费 Whois 与 RDAP 查询：查询域名注册信息、IP 地址、CIDR 网段和 ASN，包含注册商、名称服务器、DNSSEC 与滥用联系方式。">
+<meta name="color-scheme" content="light dark">
+<script>(function(){try{var t=localStorage.getItem("xiaoxuan-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/site.css?v=20261109">
+</head>
+<body data-supported="支持" data-not-supported="不支持" data-checking="测试中" data-copied="已复制 ✓" data-copy-label="复制" data-not-available="暂无数据">
+<nav class="site">
+  <a class="logo" href="/" aria-label="小轩IP检测">
+    <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect x="1.5" y="1.5" width="29" height="29" rx="9" fill="none" stroke="currentColor" stroke-width="2"></rect>
+      <path d="M16 6.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7Z" fill="currentColor"></path>
+      <circle cx="16" cy="13.5" r="2.6" fill="var(--bg)"></circle>
+    </svg>
+    <span>小轩IP检测</span>
+  </a>
+  <div class="links">
+    <a href="/">首页</a>
+    <a href="/geoip/">GeoIP</a>
+    <a href="/dns/">DNS</a>
+    <a href="/domain/">域名</a>
+    <a href="/whois/" aria-current="page">Whois</a>
+    <a href="/speedtest/">测速</a>
+      <div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-haspopup="true" aria-expanded="false">工具 <svg class="caret" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="nav-drop-menu"><a href="/azenv/">AZ 环境变量</a>
+<a href="https://free.tools/tools/root-zone-database/" target="_blank" rel="noopener">根区数据库</a>
+<a href="https://free.tools/tools/ipv4-cidr/" target="_blank" rel="noopener">IPv4 CIDR</a>
+<a href="https://free.tools/tools/ipv6-cidr/" target="_blank" rel="noopener">IPv6 CIDR</a>
+<a href="https://free.tools/tools/ipv4-address-space/" target="_blank" rel="noopener">IPv4 地址空间</a>
+<a href="https://free.tools/tools/ipv6-address-space/" target="_blank" rel="noopener">IPv6 地址空间</a>
+<a href="https://free.tools/tools/asn-assignments/" target="_blank" rel="noopener">ASN 分配表</a>
+<a href="https://free.tools/tools/ip-to-ptr/" target="_blank" rel="noopener">IP 转 PTR</a>
+<a href="https://free.tools/tools/random-ip-generator/" target="_blank" rel="noopener">随机 IP 生成器</a>
+<a href="https://free.tools/tools/ip-calculator/" target="_blank" rel="noopener">IP 计算器</a></div></div>
+  </div>
+  <form class="search" action="/search/" role="search">
+    <span class="glyph">&#8981;</span>
+    <input name="q" maxlength="255" placeholder="IPv4 / IPv6 / ASN / 域名" aria-label="查询" autocomplete="off" spellcheck="false">
+  </form>
+  <button class="nav-toggle" type="button" aria-label="菜单" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <div class="theme-menu"><button class="theme-toggle" type="button" aria-label="主题" aria-haspopup="true" aria-expanded="false">
+<span class="icon-system"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="none" stroke-dasharray="8" d="M12 21h5M12 21h-5M12 21v-4"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="8;0"/></path><path fill="currentColor" fill-opacity="0" stroke-dasharray="62" stroke-dashoffset="62" d="M12 17h-9v-12h18v12Z"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.4s" dur="0.6s" to="0"/><animate fill="freeze" attributeName="fill-opacity" begin="1s" dur="0.15s" to=".3"/></path></g></svg></span>
+<span class="icon-sun"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><defs><mask id="SVGvG6RIdLi"><path fill="#fff" d="M12 6c3.31 0 6 2.69 6 6c0 3.31 -2.69 6 -6 6c-3.31 0 -6 -2.69 -6 -6c0 -3.31 2.69 -6 6 -6Z"><animate fill="freeze" attributeName="d" dur="0.4s" values="M12 2c5.52 0 10 4.48 10 10c0 5.52 -4.48 10 -10 10c-5.52 0 -10 -4.48 -10 -10c0 -5.52 4.48 -10 10 -10Z;M12 6c3.31 0 6 2.69 6 6c0 3.31 -2.69 6 -6 6c-3.31 0 -6 -2.69 -6 -6c0 -3.31 2.69 -6 6 -6Z"/></path><path d="M22 -4c3.31 0 6 2.69 6 6c0 3.31 -2.69 6 -6 6c-3.31 0 -6 -2.69 -6 -6c0 -3.31 2.69 -6 6 -6Z"><animate fill="freeze" attributeName="d" dur="0.4s" values="M18 -4c5.52 0 10 4.48 10 10c0 5.52 -4.48 10 -10 10c-5.52 0 -10 -4.48 -10 -10c0 -5.52 4.48 -10 10 -10Z;M22 -4c3.31 0 6 2.69 6 6c0 3.31 -2.69 6 -6 6c-3.31 0 -6 -2.69 -6 -6c0 -3.31 2.69 -6 6 -6Z"/><set fill="freeze" attributeName="opacity" begin="0.4s" to="0"/></path></mask></defs><path fill="currentColor" d="M0 0h24v24H0z" mask="url(#SVGvG6RIdLi)"/><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 21v1M21 12h1M12 3v-1M3 12h-1" opacity="0"><animateTransform attributeName="transform" dur="30s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/><set fill="freeze" attributeName="opacity" begin="0.4s" to="1"/><animate fill="freeze" attributeName="d" begin="0.4s" dur="0.2s" values="M12 19v1M19 12h1M12 5v-1M5 12h-1;M12 21v1M21 12h1M12 3v-1M3 12h-1"/></path><path d="M18.5 18.5l0.5 0.5M18.5 5.5l0.5 -0.5M5.5 5.5l-0.5 -0.5M5.5 18.5l-0.5 0.5" opacity="0"><animateTransform attributeName="transform" dur="30s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/><set fill="freeze" attributeName="opacity" begin="0.6s" to="1"/><animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s" values="M17 17l0.5 0.5M17 7l0.5 -0.5M7 7l-0.5 -0.5M7 17l-0.5 0.5;M18.5 18.5l0.5 0.5M18.5 5.5l0.5 -0.5M5.5 5.5l-0.5 -0.5M5.5 18.5l-0.5 0.5"/></path></g></svg></span>
+<span class="icon-moon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><g fill="currentColor"><path fill-opacity="0" stroke="currentColor" stroke-dasharray="56" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 6c0 6.08 4.92 11 11 11c0.53 0 1.05 -0.04 1.56 -0.11c-1.61 2.47 -4.39 4.11 -7.56 4.11c-4.97 0 -9 -4.03 -9 -9c0 -3.17 1.64 -5.95 4.11 -7.56c-0.07 0.51 -0.11 1.03 -0.11 1.56Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="56;0"/><animate fill="freeze" attributeName="fill-opacity" begin="0.7s" dur="0.4s" to="1"/></path><path d="M15.22 6.03l2.53 -1.94l-3.19 -0.09l-1.06 -3l-1.06 3l-3.19 0.09l2.53 1.94l-0.91 3.06l2.63 -1.81l2.63 1.81l-0.91 -3.06Z" opacity="0"><animate fill="freeze" attributeName="opacity" begin="1.2s" dur="0.4s" to="1"/></path><path d="M19.61 12.25l1.64 -1.25l-2.06 -0.05l-0.69 -1.95l-0.69 1.95l-2.06 0.05l1.64 1.25l-0.59 1.98l1.7 -1.17l1.7 1.17l-0.59 -1.98Z" opacity="0"><animate fill="freeze" attributeName="opacity" begin="1.6s" dur="0.4s" to="1"/></path></g></svg></span></button><div class="theme-drop" role="menu" aria-label="主题"><button type="button" role="menuitemradio" data-theme-choice="system"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM12 17v4M7 21h10"/></svg><span>跟随系统</span></button>
+<button type="button" role="menuitemradio" data-theme-choice="light"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span>浅色</span></button>
+<button type="button" role="menuitemradio" data-theme-choice="dark"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg><span>深色</span></button></div></div>
+</nav>
+
+<main>
+  <h1 class="page-title">Whois / RDAP 查询</h1>
+  <section class="card">
+    <form class="whois-form" action="/whois/" role="search">
+      <input class="whois-input mono" name="q" maxlength="255" placeholder="IPv4 / IPv6 / CIDR / ASN / 域名" aria-label="查询" autocomplete="off" spellcheck="false">
+      <button class="copy">查询</button>
+    </form>
+  </section>
+
+  <div id="whois-result" aria-live="polite"></div>
+
+  <section class="lookup-block" id="whois-examples">
+    <h2 class="block-title">示例</h2>
+    <div class="lookup-grid">
+      <a class="lookup-card" href="/whois/8.8.8.8"><span class="lookup-q mono">8.8.8.8</span><span class="lookup-t">IPv4</span></a>
+      <a class="lookup-card" href="/whois/8.8.8.0/24"><span class="lookup-q mono">8.8.8.0/24</span><span class="lookup-t">IPv4 CIDR</span></a>
+      <a class="lookup-card" href="/whois/2a09::"><span class="lookup-q mono">2a09::</span><span class="lookup-t">IPv6</span></a>
+      <a class="lookup-card" href="/whois/2a09::/29"><span class="lookup-q mono">2a09::/29</span><span class="lookup-t">IPv6 CIDR</span></a>
+      <a class="lookup-card" href="/whois/AS8888"><span class="lookup-q mono">AS8888</span><span class="lookup-t">ASN</span></a>
+      <a class="lookup-card" href="/whois/ip.sb"><span class="lookup-q mono">ip.sb</span><span class="lookup-t">域名</span></a>
+    </div>
+  </section>
+
+  <section class="card faq">
+    <div class="card-head"><h2>常见问题</h2></div>
+    <details class="faq-item"><summary class="faq-q">什么是 WHOIS？</summary><p class="faq-a">WHOIS 是一个公开目录，用来回答域名、IP 地址段和 ASN 归谁管理的问题，会列出注册时间、注册商、名称服务器和联系人等信息。</p></details>
+    <details class="faq-item"><summary class="faq-q">什么是 RDAP，和 WHOIS 有什么区别？</summary><p class="faq-a">RDAP 是 WHOIS 的现代替代方案，以结构化、统一的格式返回同样的记录。查询时会优先使用 RDAP，注册局尚未支持时再回退到传统 WHOIS 文本。</p></details>
+    <details class="faq-item"><summary class="faq-q">注册商和注册人有什么区别？</summary><p class="faq-a">注册商是你注册和管理域名所通过的公司，例如 Cloudflare 或 GoDaddy；注册人才是真正持有该域名的个人或机构。</p></details>
+    <details class="faq-item"><summary class="faq-q">什么是名称服务器？</summary><p class="faq-a">名称服务器负责回答域名的 DNS 查询，决定域名解析到哪些 IP 地址，同时也能看出该域名使用了哪家 DNS 服务商。</p></details>
+    <details class="faq-item"><summary class="faq-q">什么是 DNSSEC？</summary><p class="faq-a">DNSSEC 为 DNS 应答添加加密签名，防止应答在传输过程中被悄悄篡改。“已签名”表示域名启用了该功能，“未签名”则表示没有启用。</p></details>
+    <details class="faq-item"><summary class="faq-q">为什么联系人信息被隐藏了？</summary><p class="faq-a">GDPR 等隐私法规要求注册商在公开记录中隐藏大部分个人资料。滥用举报联系方式通常仍会保留，以便出现问题时能够投诉。</p></details>
+  </section>
+</main>
+
+<footer class="site"><p>Copyright &copy; <span id="year">2026</span> 小轩IP检测. 保留所有权利。</p></footer>
+<script src="/assets/app.js?v=20261109" defer></script>
+</body>
+</html>

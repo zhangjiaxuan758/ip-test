@@ -1,0 +1,104 @@
+/* 小轩IP检测 - 品牌与页面补充样式 */
+nav.site .logo{letter-spacing:.01em}
+nav.site .logo span{white-space:nowrap}
+.logo-mark{color:var(--text)}
+
+/* 工具下拉的箭头 */
+.nav-drop-btn .caret{flex:none;margin-left:1px;opacity:.55;transition:transform .22s var(--ease-out),opacity .22s ease}
+.nav-dropdown.open .nav-drop-btn .caret{transform:rotate(180deg);opacity:1}
+
+/* 点击开合，避免鼠标悬停让菜单和箭头卡在展开状态 */
+@media(hover:hover){
+  .nav-dropdown:hover .nav-drop-menu{visibility:hidden;opacity:0;pointer-events:none}
+  .nav-dropdown.open .nav-drop-menu{visibility:visible;opacity:1;pointer-events:auto}
+}
+
+/* 域名解析折叠项的箭头 */
+.acc-chevron svg{display:block}
+.acc-head[aria-expanded=true] .acc-chevron{transform:rotate(180deg)}
+
+/* 搜索结果卡片 */
+#geoip-result:empty,#whois-result:empty,#domain-result:empty,#azenv-rows:empty{display:none}
+#geoip-result>.card,#whois-result>.card,#domain-result>.card{margin-top:24px}
+#geoip-result>.card:first-child,#whois-result>.card:first-child,#domain-result>.card:first-child{margin-top:24px}
+#geoip-result .card-head h2,#whois-result .card-head h2,#domain-result .card-head h2{overflow-wrap:anywhere}
+#whois-result .whois-raw{max-height:none}
+.card-head .head-tools{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.card-head .head-tools .status{white-space:nowrap}
+
+/* 值内换行（状态、NS 服务器等） */
+.val{white-space:pre-line}
+.row .val.mono{white-space:pre-wrap}
+
+/* 结果提示与错误 */
+.result-note{padding:4px 24px 16px;margin:0;color:var(--lbl);font-size:14px;line-height:1.7}
+.result-error{margin:0;color:var(--bad);font-size:14px;line-height:1.7}
+.error-card .card-head h2{font-size:16px}
+.card-empty{padding:18px 24px;color:var(--lbl);font-size:14px;line-height:1.7}
+.loading-body{padding:4px 0}
+.loading-row{display:grid;grid-template-columns:200px 1fr;align-items:center;min-height:48px;padding:6px 24px;column-gap:16px}
+.loading-row+.loading-row{border-top:1px solid var(--hair)}
+.skeleton{display:block;height:11px;border-radius:6px;background:var(--hair);animation:skeleton-pulse 1.2s ease-in-out infinite}
+.skeleton.lbl-sk{width:96px}
+.skeleton.val-sk{width:58%}
+.skeleton.val-sk.short{width:34%}
+@keyframes skeleton-pulse{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.skeleton{animation:none}}
+
+@media(max-width:768px){
+  .loading-row{grid-template-columns:1fr;row-gap:6px;padding:10px 24px}
+}
+
+/* ===== 强制锁定缩放：禁止双指 / 双击 / 触控板缩放 ===== */
+html,body{touch-action:pan-x pan-y}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overscroll-behavior-x:contain}
+/* 无悬停设备（平板/手机）直接显示复制按钮，避免依赖 hover */
+@media(hover:none){.row .copy{opacity:1}}
+
+/* ===== 平板（≤1024）：导航折叠为抽屉菜单 ===== */
+@media(max-width:1024px){
+  nav.site{flex-wrap:wrap;height:auto;padding:10px 16px;gap:10px;row-gap:10px}
+  nav.site .logo{order:1;margin-right:auto}
+  nav.site .theme-menu{order:2}
+  nav.site .nav-toggle{display:flex;order:3}
+  nav.site .search{order:4;flex-basis:100%;width:auto;max-width:none;min-width:0;height:42px}
+  nav.site .search input{font-size:16px}
+  nav.site .search .glyph{font-size:20px}
+  nav.site.no-header-search .search{display:none}
+  nav.site .links{display:none;order:5;flex-basis:100%;flex-direction:column;gap:0;margin-top:2px;border-top:1px solid var(--hair)}
+  nav.site.nav-open .links{display:flex}
+  nav.site .links a{display:flex;align-items:center;min-height:46px;padding:0;font-size:15px;border-bottom:1px solid var(--hair)}
+  nav.site .nav-dropdown{position:static;flex-direction:column;align-items:stretch;align-self:stretch;width:100%}
+  nav.site .nav-drop-btn{width:100%;min-height:46px;padding:0;justify-content:space-between;border-bottom:1px solid var(--hair)}
+  nav.site .nav-drop-menu{position:static;width:100%;min-width:0;padding:2px 0 8px 16px;border:none;box-shadow:none;background:0 0}
+  nav.site .nav-dropdown:not(.open) .nav-drop-menu{display:none}
+  nav.site .nav-dropdown.open .nav-drop-menu{display:block;visibility:visible;opacity:1;transform:none}
+  nav.site .nav-drop-menu a{min-height:40px;padding:0;white-space:normal;color:var(--sec)}
+  .whois-input{font-size:16px}
+}
+
+/* ===== 手机（≤768）：单列信息行，保留复制按钮 ===== */
+@media(max-width:768px){
+  .row{grid-template-columns:minmax(0,1fr) auto;column-gap:12px}
+  .row>.lbl{grid-column:1/-1}
+  .row .copy{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;opacity:1;font-size:12.5px}
+}
+
+/* ===== 小屏手机（≤480）：收紧留白 ===== */
+@media(max-width:480px){
+  nav.site{padding:10px 14px}
+  main{padding:24px 14px 0}
+  .card-head{min-height:52px;padding:0 16px}
+  .card-head h2{font-size:16px}
+  .row{padding:10px 16px}
+  .loading-row{padding:10px 16px}
+  .hero-title{font-size:clamp(22px,6vw,28px)}
+  .lookup-card{flex:1 1 100%;min-width:0}
+  .st-go{width:112px;height:112px;font-size:16px}
+  .dns-row{padding:12px 16px}
+  .whois-form{padding:12px 14px}
+  .whois-raw{padding:14px 16px}
+  .faq-q{padding:14px 16px}
+  .faq-a{padding:0 16px 16px}
+}

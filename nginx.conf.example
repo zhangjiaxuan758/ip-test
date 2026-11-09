@@ -1,0 +1,97 @@
+# 小轩IP检测 - Nginx + PHP-FPM 示例配置
+#
+# 目录结构：
+#   /var/www/xiaoxuan-ip/public   -> Nginx root（只暴露这个目录）
+#   /var/www/xiaoxuan-ip/app      -> PHP 代码（不可通过 Web 访问）
+#   /var/www/xiaoxuan-ip/storage  -> 缓存文件（不可通过 Web 访问）
+#
+# 使用前请替换：
+#   1. server_name 和证书路径
+#   2. PHP-FPM 的 socket 路径（php8.3-fpm.sock 按你的版本修改）
+#   3. 如需整站密码，取消 auth_basic 两行注释并生成 /etc/nginx/.htpasswd
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ip.example.com;
+
+    root /var/www/xiaoxuan-ip/public;
+    index index.html;
+    charset utf-8;
+
+    server_tokens off;
+    client_max_body_size 1m;
+
+    # ---------- 可选：只允许指定 IP 访问 ----------
+    # allow 203.0.113.10;
+    # allow 10.0.0.0/8;
+    # deny all;
+
+    # ---------- 安全响应头 ----------
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+    add_header Cross-Origin-Opener-Policy "same-origin" always;
+    add_header X-Permitted-Cross-Domain-Policies "none" always;
+    # 启用 HTTPS 后再打开 HSTS：
+    # add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    # CSP：允许本站脚本，以及 IP/DNS/测速所需的外部接口
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://ipv4.ip.sb https://ipv6.ip.sb https://api.ip.sb https://*.dnsprobe.ip.sb https://cdn.npmmirror.com https://node-223-160-155-255.speedtest.cn:51090 https://node-111-61-93-49.speedtest.cn:51090 https://node-111-20-163-124.speedtest.cn:51090 https://node-27-185-69-133.speedtest.cn:51090" always;
+
+    # ---------- 可选：整站访问密码 ----------
+    # auth_basic "小轩IP检测";
+    # auth_basic_user_file /etc/nginx/.htpasswd;
+
+    # 隐藏文件全部拒绝
+    location ~ /\.(?!well-known) {
+        deny all;
+    }
+
+    # 敏感后缀拒绝
+    location ~* \.(?:py|pyc|sql|log|ini|bak|conf|md|env|sh)$ {
+        deny all;
+    }
+
+    # 双保险：即使 root 配错也不让访问 app / storage
+    location ~ ^/(?:app|storage)/ {
+        deny all;
+    }
+
+    # 动态路由 + 静态文件
+    location / {
+        try_files $uri $uri/ /router.php?$query_string;
+    }
+
+    # PHP 只允许执行 router.php
+    location = /router.php {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root/router.php;
+        fastcgi_param HTTPS $https if_not_empty;
+        fastcgi_read_timeout 40s;
+        fastcgi_hide_header X-Powered-By;
+    }
+
+    # 目录下其他 PHP 文件一律拒绝，避免误放脚本被执行
+    location ~ \.php$ {
+        deny all;
+    }
+
+    # 静态资源
+    location ^~ /assets/ {
+        expires 7d;
+        access_log off;
+        try_files $uri =404;
+
+        # 可选：防盗链。启用前确认你的域名与 CDN。
+        # valid_referers none blocked server_names ip.example.com;
+        # if ($invalid_referer) {
+        #     return 403;
+        # }
+    }
+
+    access_log /var/log/nginx/xiaoxuan-ip.access.log;
+    error_log  /var/log/nginx/xiaoxuan-ip.error.log;
+}
