@@ -6,8 +6,6 @@
     supported: body.getAttribute("data-supported") || "支持",
     notSupported: body.getAttribute("data-not-supported") || "不支持",
     checking: body.getAttribute("data-checking") || "测试中",
-    copied: body.getAttribute("data-copied") || "已复制 ✓",
-    copy: body.getAttribute("data-copy-label") || "复制",
     notAvailable: body.getAttribute("data-not-available") || "暂无数据"
   };
 
@@ -84,43 +82,7 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- 复制 ---------- */
-  function doCopy(text, btn) {
-    function done() {
-      var old = btn.getAttribute("data-label") || btn.textContent;
-      btn.setAttribute("data-label", old);
-      btn.textContent = TEXT.copied;
-      setTimeout(function () { btn.textContent = old; }, 1400);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
-    } else {
-      fallbackCopy(text, done);
-    }
-  }
-
-  function fallbackCopy(text, done) {
-    var ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand("copy"); done(); } catch (e) { /* 忽略 */ }
-    document.body.removeChild(ta);
-  }
-
   document.addEventListener("click", function (e) {
-    var btn = e.target.closest ? e.target.closest("button.copy") : null;
-    if (btn) {
-      var row = btn.closest(".row");
-      if (!row) return;
-      var val = row.querySelector(".val");
-      if (!val || val.classList.contains("dim")) return;
-      var text = val.textContent.trim();
-      if (text) doCopy(text, btn);
-      return;
-    }
     var more = e.target.closest ? e.target.closest("button.more-toggle") : null;
     if (more) {
       var card = more.closest(".card");
@@ -509,13 +471,6 @@
     }
     wrap.appendChild(lbl);
     wrap.appendChild(val);
-    if (row.text !== "" && row.text != null && !options.noCopy) {
-      var btn = document.createElement("button");
-      btn.className = "copy";
-      btn.type = "button";
-      btn.textContent = TEXT.copy;
-      wrap.appendChild(btn);
-    }
     return wrap;
   }
 

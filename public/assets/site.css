@@ -53,8 +53,6 @@ nav.site .logo span{white-space:nowrap}
 html,body{touch-action:pan-x pan-y}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{overscroll-behavior-x:contain}
-/* 无悬停设备（平板/手机）直接显示复制按钮，避免依赖 hover */
-@media(hover:none){.row .copy{opacity:1}}
 
 /* ===== 平板（≤1024）：导航折叠为抽屉菜单 ===== */
 @media(max-width:1024px){
@@ -78,11 +76,10 @@ body{overscroll-behavior-x:contain}
   .whois-input{font-size:16px}
 }
 
-/* ===== 手机（≤768）：单列信息行，保留复制按钮 ===== */
+/* ===== 手机（≤768）：单列信息行 ===== */
 @media(max-width:768px){
   .row{grid-template-columns:minmax(0,1fr) auto;column-gap:12px}
   .row>.lbl{grid-column:1/-1}
-  .row .copy{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;opacity:1;font-size:12.5px}
 }
 
 /* ===== 小屏手机（≤480）：收紧留白 ===== */

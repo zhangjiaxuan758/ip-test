@@ -643,7 +643,7 @@ function not_found(): void
     header('Content-Type: text/html; charset=utf-8');
     echo '<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8"><title>页面不存在 - 小轩IP检测</title>'
         . '<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">'
-        . '<link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/site.css?v=20261109">'
+        . '<link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/site.css?v=20261109b">'
         . '</head><body><main><div class="notfound"><div class="nf-code">404</div>'
         . '<h1 class="nf-title">页面不存在</h1><p class="nf-msg">你访问的页面已被移动或删除。</p>'
         . '<p class="nf-actions"><a class="hero-btn" href="/">返回首页</a></p></div></main>'
